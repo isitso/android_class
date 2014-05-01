@@ -1,0 +1,80 @@
+-- VERSION_4
+-- START DISKCACHE
+/Users/marksargent/Documents/workspace/.metadata/.plugins/org.eclipse.core.resources/.projects/CS461/com.python.pydev.analysis/v2_indexcache
+hw3|0|/Users/marksargent/Documents/workspace/CS461/hw3.py
+-- END DISKCACHE
+-- START DICTIONARY
+5
+5=tester
+2=hw3a
+4=cost_function
+3=ex1_main
+1=hw3
+-- END DICTIONARY
+-- START TREE 1
+61
+X|3|X!11@X!19@X!27@
+Y|3|Y!19@Y!27@Y!11@
+a|0|
+a1|0|
+alp|0|
+ara|0|
+arr|0|
+b|1|b!27@
+bea|0|
+bre|0|
+cal|3|calculate_cost!34@calculate_prediction!34@calculate_cost!10@
+col|0|
+com|0|
+cos|3|cost!19@cost!11@cost_function_reg!18@
+csv|2|csv_file_object!19@csv_file_object!11@
+cth|0|
+dat|2|data!11@data!19@
+dea|0|
+dec|1|decorated_cost!18@
+des|0|
+fea|0|
+fil|1|filename!27@
+fiv|0|
+gol|0|
+gra|2|grad!19@gradient_descent!34@
+hea|2|header!19@header!11@
+ini|1|initial_theta!19@
+it|1|it!19@
+ite|0|
+j_h|0|
+l|1|l!19@
+m|2|m!19@m!27@
+mat|1|matrix!43@
+mor|0|
+n|1|n!19@
+nex|0|
+no|0|
+nor|0|
+num|0|
+poe|0|
+pri|0|
+ran|0|
+res|0|
+row|0|
+s|0|
+sec|0|
+sen|0|
+sig|2|sigmoid!10@sigmoid!18@
+sor|0|
+sp|0|
+sta|0|
+stu|0|
+ten|0|
+the|3|Theta!27@Theta!11@Theta!19@
+tra|0|
+val|0|
+wor|0|
+x_n|1|X_norm!27@
+y|0|
+y_n|0|
+yp|1|yp!27@
+-- END TREE
+-- START TREE 2
+0
+-- END TREE

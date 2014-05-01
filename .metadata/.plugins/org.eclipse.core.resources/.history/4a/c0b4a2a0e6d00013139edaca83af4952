@@ -1,0 +1,62 @@
+package com.example.mapexample;
+
+import android.app.Activity;
+import android.graphics.Color;
+import android.os.Bundle;
+
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+public class MainActivity extends Activity {
+	
+	private GoogleMap mMap;
+	
+	private static final double CAMERA_LNG = 87.0;
+	private static final double CAMERA_LAT = 17.0;
+	
+	float lat;
+	float lng;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		mMap.addMarker(new MarkerOptions()
+
+		// Set the Marker's position
+		.position(new LatLng(lat, lng))
+
+		// Set the title of the Marker's information window
+		.title("You are here.")
+
+		// Set the color for the Marker
+		.icon(BitmapDescriptorFactory
+				.defaultMarker(Color.BLUE)));
+
+		mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(
+				CAMERA_LAT, CAMERA_LNG)));
+
+	}
+
+	
+
+	
+
+}
+
+
+
+
+
+
+
+
+
+		
+	
+		
+
