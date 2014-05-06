@@ -1,0 +1,91 @@
+import com.example.maps.R;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesClient;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.location.LocationClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+
+import android.app.Activity;
+import android.location.Location;
+import android.os.Bundle;
+import android.widget.Toast;
+
+public class Main extends Activity implements
+		GooglePlayServicesClient.ConnectionCallbacks,
+		GooglePlayServicesClient.OnConnectionFailedListener, LocationListener {
+
+	LocationClient mLocationClient;
+	Location mCurrentLocation;
+	LocationRequest mLocationRequest;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+
+		mLocationClient = new LocationClient(this, this, this);
+
+		// getting updates for location
+		mLocationRequest = LocationRequest.create();
+
+		mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+		// Set the update interval to 5 seconds
+		mLocationRequest.setInterval(5000);
+
+	}
+	
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		
+		int resultCode = GooglePlayServicesUtil
+				.isGooglePlayServicesAvailable(this);
+		// If Google Play services is available
+		if (ConnectionResult.SUCCESS == resultCode) {
+			Toast.makeText(this, "Has Google Services", Toast.LENGTH_SHORT)
+					.show();
+		} else {
+			Toast.makeText(this, "No Google Services", Toast.LENGTH_SHORT)
+					.show();
+		}
+
+		mLocationClient.connect();
+
+	}
+	
+	
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		mLocationClient.disconnect();
+
+	}
+
+	@Override
+	public void onLocationChanged(Location arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onConnectionFailed(ConnectionResult arg0) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onConnected(Bundle connectionHint) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void onDisconnected() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

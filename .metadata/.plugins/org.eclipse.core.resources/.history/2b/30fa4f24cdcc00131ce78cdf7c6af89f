@@ -1,0 +1,135 @@
+package course.examples.Networking.AndroidHttpClientJSON;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.ResponseHandler;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.BasicResponseHandler;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
+import android.app.ListActivity;
+import android.net.http.AndroidHttpClient;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+
+public class NetworkingAndroidHttpClientJSONActivity extends ListActivity {
+	private TextView loctxt;
+
+	private int lat = 35;
+	private int lng = 139;
+	private int count = 10;
+	private String city;
+	private String country;
+
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.list);
+		loctxt = (TextView)findViewById(R.id.cityState);
+	
+		
+		new HttpGetTask().execute();
+	}
+
+	private class HttpGetTask extends AsyncTask<Void, Void, List<String>> {
+
+		private static final String TAG = "HttpGetTask";
+
+		private String URL = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=" + lat + "&lon=" + lng + "&cnt="+ count+"&mode=json";
+
+		AndroidHttpClient mClient = AndroidHttpClient.newInstance("");
+		
+
+		@Override
+		protected List<String> doInBackground(Void... params) {
+			HttpGet request = new HttpGet(URL);
+			JSONResponseHandler responseHandler = new JSONResponseHandler();
+			try {
+				return mClient.execute(request, responseHandler);
+			} catch (ClientProtocolException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(List<String> result) {
+			if (null != mClient)
+				mClient.close();
+			setListAdapter(new WeatherAdapter(
+					NetworkingAndroidHttpClientJSONActivity.this,
+					R.layout.list_item, result));
+			
+			loctxt.setText(city + ", " + country);
+		
+		}
+	}
+
+	private class JSONResponseHandler implements ResponseHandler<List<String>> {
+
+		private static final String NAME_TAG = "name";
+		private static final String CITY_TAG = "city";
+		private static final String COUNTRY_TAG = "country";
+		private static final String LIST_TAG = "list";
+		private static final String WEATHER_TAG = "weather";
+		
+		private static final String DESCRIPTION_TAG = "description";
+		
+
+		@Override
+		public List<String> handleResponse(HttpResponse response)
+				throws ClientProtocolException, IOException {
+			List<String> result = new ArrayList<String>();
+			String JSONResponse = new BasicResponseHandler()
+					.handleResponse(response);
+			try {
+
+				// Get top-level JSON Object - a Map
+				JSONObject responseObject = (JSONObject) new JSONTokener(
+						JSONResponse).nextValue();
+				
+				JSONObject location = (JSONObject) responseObject.get(CITY_TAG);
+				
+				city = (String)location.get(NAME_TAG);
+				country = (String)location.get(COUNTRY_TAG);
+
+				// Extract value of "list" key -- a List
+				JSONArray predictions = responseObject
+						.getJSONArray(LIST_TAG);
+
+				// Iterate over weather list
+				for (int idx = 0; idx < predictions.length(); idx++) {
+
+					// Get single day data - a Map
+					JSONObject day = (JSONObject) predictions.get(idx);
+					JSONArray weatherArray = (JSONArray) day.getJSONArray(WEATHER_TAG);
+					JSONObject weather = (JSONObject) weatherArray.get(0);
+					
+					int counter = idx + 1;
+
+					String description = (String)weather.get(DESCRIPTION_TAG);
+					result.add("Day " + counter + ": "
+							+ description);
+							
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			return result;
+		}
+	}
+}

@@ -1,0 +1,71 @@
+import android.app.ListActivity;
+import android.content.Intent;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.provider.Contacts.People;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
+
+import com.detroitteatime.mynotes.R;
+
+
+public class Main extends ListActivity{
+	
+	private Button add;
+	private DBHelper helper;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.main);
+		helper = new DBHelper(this);
+		
+        Cursor cursor = helper.getAll();
+        startManagingCursor(cursor);
+
+        // the desired columns to be bound
+        String[] columns = new String[] {NoteEntry.COLUMN_NAME_TITLE};
+        // the XML defined views which the data will be bound to
+        int[] to = new int[] { R.id.title };
+
+        // create the adapter using the cursor pointing to the desired data as well as the layout information
+        SimpleCursorAdapter mAdapter = new SimpleCursorAdapter(this, R.layout.row, cursor, columns, to);
+
+        // set this adapter as your ListActivity's adapter
+        this.setListAdapter(mAdapter);
+		
+		
+		
+		
+		add = (Button)findViewById(R.id.add);
+		
+		add.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				Intent intent = new Intent(Main.this, Form.class);
+				startActivity(intent);
+			}
+		});
+		
+		
+	}
+
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		super.onListItemClick(l, v, position, id);
+		//get the information from the database for this position
+		
+		
+		//pass the information to the display activity through bundle
+		
+		
+	}
+
+
+	
+
+}

@@ -1,0 +1,103 @@
+package com.example.gpsdemo;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesClient;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.location.LocationClient;
+
+public class MainActivity extends Activity implements  GooglePlayServicesClient.ConnectionCallbacks,
+GooglePlayServicesClient.OnConnectionFailedListener{
+	
+	LocationClient mLocationClient;
+	TextView latView;
+	TextView longView;
+	TextView otherView;
+
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		mLocationClient = new LocationClient(this, this, this);
+		
+		latView = (TextView)findViewById(R.id.latView);
+		longView = (TextView)findViewById(R.id.longView);
+		otherView = (TextView)findViewById(R.id.otherView);
+		
+		
+	}
+	
+	
+	
+
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		mLocationClient.connect();
+
+		
+	}
+
+
+
+
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		  mLocationClient.disconnect();
+
+	}
+
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		
+		int resultCode =
+                GooglePlayServicesUtil.
+                        isGooglePlayServicesAvailable(this);
+        // If Google Play services is available
+        if (ConnectionResult.SUCCESS == resultCode) {
+        	Toast.makeText(this, "Has Google Services", Toast.LENGTH_SHORT).show();
+        } else {
+        	Toast.makeText(this, "No Google Services", Toast.LENGTH_SHORT).show();
+        }
+
+	}
+
+
+
+
+	@Override
+	public void onConnectionFailed(ConnectionResult result) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onConnected(Bundle connectionHint) {
+		Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show();
+
+		
+	}
+
+	@Override
+	public void onDisconnected() {
+		Toast.makeText(this, "Disconnected. Please re-connect.",
+                Toast.LENGTH_SHORT).show();
+
+		
+	}
+
+	
+
+}

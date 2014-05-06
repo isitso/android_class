@@ -1,0 +1,43 @@
+package com.example.gpsdemo;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesClient;
+
+import android.app.Activity;
+import android.os.Bundle;
+
+public class MainActivity extends Activity implements  GooglePlayServicesClient.ConnectionCallbacks,
+GooglePlayServicesClient.OnConnectionFailedListener{
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		
+	}
+	
+	
+	
+
+	@Override
+	public void onConnectionFailed(ConnectionResult result) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onConnected(Bundle connectionHint) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onDisconnected() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+
+}

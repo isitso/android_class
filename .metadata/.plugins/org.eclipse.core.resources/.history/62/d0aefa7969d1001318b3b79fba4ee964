@@ -1,0 +1,23 @@
+import com.google.android.gms.common.GooglePlayServicesClient;
+import com.google.android.gms.location.LocationListener;
+
+import android.app.Activity;
+import android.os.Bundle;
+
+
+public class Main extends Activity implements
+GooglePlayServicesClient.ConnectionCallbacks,
+GooglePlayServicesClient.OnConnectionFailedListener, LocationListener{
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		
+	}
+	
+	
+	
+	
+
+}

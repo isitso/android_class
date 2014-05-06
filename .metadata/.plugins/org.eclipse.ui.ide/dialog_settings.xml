@@ -9,6 +9,8 @@
 		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
 		<item value="false" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="/home/mark/coursera-android-master/Examples/ThreadingNoThreading"/>
+			<item value="/home/mark/coursera-android-master/Examples/ThreadingAsyncTask"/>
 			<item value="/home/mark/Downloads/android_class-master/List"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">

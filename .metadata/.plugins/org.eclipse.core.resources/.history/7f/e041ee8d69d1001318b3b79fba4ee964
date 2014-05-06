@@ -1,0 +1,49 @@
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesClient;
+import com.google.android.gms.location.LocationListener;
+
+import android.app.Activity;
+import android.location.Location;
+import android.os.Bundle;
+
+
+public class Main extends Activity implements
+GooglePlayServicesClient.ConnectionCallbacks,
+GooglePlayServicesClient.OnConnectionFailedListener, LocationListener{
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+		
+	}
+
+	@Override
+	public void onLocationChanged(Location arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onConnectionFailed(ConnectionResult arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onConnected(Bundle connectionHint) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onDisconnected() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	
+	
+
+}
