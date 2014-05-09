@@ -75,10 +75,7 @@ public class Main extends ListActivity {
 						Cursor newCursor = helper.getAll();
 						mAdapter.swapCursor(newCursor);
 						
-						Main.this.setListAdapter(mAdapter);
-						
-						
-						
+						Main.this.setListAdapter(mAdapter);				
 						mAdapter.notifyDataSetChanged();
 
 						return true;

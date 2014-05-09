@@ -1,8 +1,0 @@
-package snippet;
-
-public class Snippet {
-	public static void main(String[] args) {
-		android.R.layout.simple_list_item_1
-	}
-}
-

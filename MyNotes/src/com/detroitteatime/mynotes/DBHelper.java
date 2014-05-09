@@ -63,8 +63,7 @@ public class DBHelper {
 
 		// Define a projection that specifies which columns from the database
 		// you will actually use after this query.
-		String[] projection = { NoteEntry.COLUMN_NAME_TITLE,
-				NoteEntry.COLUMN_NAME_TEXT };
+		String[] projection = { "*" };
 
 		String[] args = { String.valueOf(id) };
 
