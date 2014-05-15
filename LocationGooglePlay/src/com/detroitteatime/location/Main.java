@@ -36,13 +36,6 @@ public class Main extends Activity implements
 	@Override
 	protected void onStart() {
 		super.onStart();
-		mLocationClient.connect();
-	}
-
-
-	@Override
-	protected void onResume() {
-		super.onResume();
 		int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
 		if (status != ConnectionResult.SUCCESS) {
 			Toast.makeText(this, "Install Google Play Services.",
@@ -50,9 +43,10 @@ public class Main extends Activity implements
 			finish();
 		}else{
 		
-			
+			mLocationClient.connect();	
 		}
 	}
+
 
 	@Override
 	protected void onStop() {
